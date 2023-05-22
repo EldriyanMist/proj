@@ -7,25 +7,20 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// ConnectToDB устанавливает соединение с базой данных PostgreSQL
+// Cоединение с PostgreSQL
 func ConnectToDB(host, port, user, password, dbname string) (*sql.DB, error) {
-	// Формируем строку подключения
 	connStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname)
-
-	// Подключаемся к базе данных
+	// Подключение к БД
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		return nil, err
 	}
-
-	// Проверяем соединение
+	// Проверка
 	err = db.Ping()
 	if err != nil {
 		db.Close()
 		return nil, err
 	}
-
-	// Возвращаем работающее соединение к базе данных
 	return db, nil
 }
