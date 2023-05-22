@@ -2,16 +2,15 @@ package main
 
 import (
 	"log"
-
-	"github.com/your/package/postgres"
+	"Assignment/pkg/store/postgres"
 )
 
 func main() {
 	host := "localhost"
 	port := "5432"
-	user := ""
-	password := ""
-	dbname := ""
+	user := "postgres"
+	password := "postgres"
+	dbname := "Microservices"
 
 	db, err := postgres.ConnectToDB(host, port, user, password, dbname)
 	if err != nil {
